@@ -1,6 +1,0 @@
-#!/bin/sh
-exec 2>&1
-
-export LC_ALL=C
-umask 077
-exec chpst -P -U root -u root /usr/bin/mongod --dbpath /var/lib/mongodb 

@@ -5,7 +5,7 @@ FROM            ubuntu:14.04.3
 MAINTAINER      "Vaibhav Todi"       <vaibhavtodi1989@gmail.com>
 
 # Specifing the Label
-LABEL    Description="A MongoDB Docker image where the Service is run through RUNIT. Base image is Ubuntu 14.04.3"            \
+LABEL    Description="A MongoDB Docker image where base image is Ubuntu 14.04.3"            \
          Version="1.0"
 
 # Setting the Environment & Working Directory
@@ -15,7 +15,7 @@ USER     root
 
 # Updating the base system & installing the packages
 RUN      apt-get  update                                                                                                      \
-     &&  apt-get  install  -y   apt-transport-https software-properties-common runit
+     &&  apt-get  install  -y   apt-transport-https software-properties-common
 
 # Importing, Downloading & Insatalling MongoDB.org
 RUN      apt-key  adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927                                               \
@@ -26,12 +26,6 @@ RUN      apt-key  adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 
 # Copy entrypoint.sh script
 COPY     entrypoint.sh   /entrypoint.sh
 
-# Copy the RUNIT Service
-COPY     mongodb         /etc/sv/mongodb
-
-# Copy the svloggelfd for logging logs onto the graylog server
-COPY     svloggelfd      /usr/bin/svloggelfd
-
 # Cleaning the Docker Image
 RUN      apt-get   -y    clean                                                                                               \
      &&  rm        -rf   /var/lib/apt/lists/*                                                                                \
@@ -41,7 +35,7 @@ RUN      apt-get   -y    clean                                                  
 EXPOSE   27017
 
 # Mounting the Volume
-VOLUME   ["/var/log/mongodb", "/var/lib/mongodb", "/etc/sv"]
+VOLUME   ["/var/log/mongodb", "/var/lib/mongodb"]
 
 # CMD Insstruction
 CMD      ["/entrypoint.sh"]
