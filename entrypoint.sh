@@ -1,4 +1,5 @@
 #!/bin/sh
+exec 2>&1
 
 # Starting the  Mongodb Service
-exec   /usr/bin/mongod --config  /etc/mongodb.conf
+exec /usr/bin/mongod --config /etc/mongod.conf
