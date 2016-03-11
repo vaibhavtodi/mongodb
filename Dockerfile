@@ -15,7 +15,7 @@ USER     root
 
 # Updating the base system & installing the packages
 RUN      apt-get  update                                                                                                      \
-     &&  apt-get  install  -y   apt-transport-https software-properties-common
+     &&  apt-get  install  -y   apt-transport-https software-properties-common vim
 
 # Importing, Downloading & Insatalling MongoDB.org
 RUN      apt-key  adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927                                               \
