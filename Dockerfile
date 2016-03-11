@@ -35,7 +35,7 @@ RUN      apt-get   -y    clean                                                  
 EXPOSE   27017
 
 # Mounting the Volume
-VOLUME   ["/var/log/mongodb", "/var/lib/mongodb", "/etc/mongod.conf"]
+VOLUME   ["/var/log/mongodb", "/var/lib/mongodb"]
 
 # CMD Insstruction
 CMD      ["/entrypoint.sh"]
